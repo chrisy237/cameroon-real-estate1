@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cameroon Real Estate</title>
+</head>
+<body>
+  <h1>Cameroon Real Estate Dashboard</h1>
+  <ul id="properties"></ul>
+
+  <script>
+    fetch('http://localhost:8000/properties')
+      .then(response => response.json())
+      .then(data => {
+        const list = document.getElementById('properties');
+        data.forEach(p => {
+          const li = document.createElement('li');
+          li.textContent = `${p.type} in ${p.location} - $${p.price}`;
+          list.appendChild(li);
+        });
+      });
+  </script>
+</body>
+</html>
